@@ -1,0 +1,6 @@
+streamlit
+openai
+pandas
+fpdf
+pytesseract
+pillow

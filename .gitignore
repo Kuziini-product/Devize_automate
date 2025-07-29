@@ -1,0 +1,5 @@
+/output/istoric/*
+!/output/istoric/.gitkeep
+__pycache__/
+.env
+.streamlit/

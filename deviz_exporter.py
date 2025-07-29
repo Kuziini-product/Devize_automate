@@ -1,4 +1,3 @@
-
 import pandas as pd
 import os
 from fpdf import FPDF
@@ -14,14 +13,10 @@ def get_next_offer_number():
 
 def export_excel_pdf(df, descriere):
     nr_oferta = get_next_offer_number()
-    client = "Client"
-    nume_fisier_base = f"OF-2025-{str(nr_oferta).zfill(4)}_{client}"
-
-    # Export Excel
+    nume_fisier_base = f"OF-2025-{str(nr_oferta).zfill(4)}_Client"
     excel_path = os.path.join(ISTORIC_FOLDER, f"{nume_fisier_base}.xlsx")
     df.to_excel(excel_path, index=False)
 
-    # Export PDF
     pdf_path = os.path.join(ISTORIC_FOLDER, f"{nume_fisier_base}.pdf")
     pdf = FPDF()
     pdf.add_page()
@@ -31,16 +26,13 @@ def export_excel_pdf(df, descriere):
     pdf.set_font("Arial", size=10)
     pdf.multi_cell(0, 10, descriere)
     pdf.ln(5)
-    col_widths = [50, 25, 20, 30, 30]
-
-    for i, col in enumerate(df.columns):
-        pdf.cell(col_widths[i], 10, col, 1)
+    for col in df.columns:
+        pdf.cell(38, 10, col, 1)
     pdf.ln()
     for _, row in df.iterrows():
-        for i, val in enumerate(row):
-            pdf.cell(col_widths[i], 10, str(val), 1)
+        for val in row:
+            pdf.cell(38, 10, str(val), 1)
         pdf.ln()
-
     pdf.output(pdf_path)
     return pdf_path
 
