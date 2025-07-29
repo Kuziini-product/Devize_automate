@@ -8,7 +8,13 @@ from deviz_exporter import export_excel_pdf, lista_oferte_istoric
 import os
 
 st.set_page_config(page_title="Kuziini | Configurator Devize", layout="centered")
-st.image("assets/Kuziini_logo_negru.png", width=300)
+from pathlib import Path
+
+logo_path = Path("assets/Kuziini_logo_negru.png")
+if logo_path.exists():
+    st.image(str(logo_path), width=300)
+else:
+    st.markdown("### 🪑 Kuziini | Configurator Devize")
 st.markdown("## Configurator Devize pentru Corpuri de Mobilier")
 
 st.markdown("### 1. Încarcă o poză cu corpul de mobilier (opțional)")
